@@ -14,5 +14,8 @@ export default{
     CONFIRM_PASSWORD:"Confirm Password",
     ALREADY_HAVE_ACC:"Already have an account",
     Verification_Code:'Verification Code',
-    A_code_has_been_sent_to:'A code has been sent to'
+    A_code_has_been_sent_to:'A code has been sent to',
+    Did_not_recieved_the_code:'Didn’t recieved the code? ',
+    RESEND_CODE:'Resend Code',
+    VERIFY:'Verify'
 }

@@ -18,7 +18,7 @@ interface GradientButtonProps extends TouchableOpacityProps {
   containerStyle?: object;
   btnStyle?: object;
   borderRadius?: number;
-  btnText: string;
+  btnText: any;
   marginTop?: number;
   marginBottom?: number;
   textStyle?: object;

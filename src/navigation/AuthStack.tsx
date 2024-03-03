@@ -8,9 +8,9 @@ const AuthStack = () => {
   const Stack = createNativeStackNavigator();
   return (
     <>
-   <Stack.Screen component={OtpVerify} name={navigationStrings.OtpVerify}/>
-   <Stack.Screen component={Login} name={navigationStrings.Login}/>
    <Stack.Screen component={Signup} name={navigationStrings.Signup}/>
+   <Stack.Screen component={Login} name={navigationStrings.Login}/>
+   <Stack.Screen component={OtpVerify} name={navigationStrings.OtpVerify}/>
     </>
   )
 }

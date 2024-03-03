@@ -10,4 +10,7 @@ export default {
     circularRegular: 'CircularStd-Book',
     circularMedium: 'CircularStd-Medium',
     circularBold: 'CircularStd-Bold',
+    ProximaNovaRegular: 'ProximaNova-Regular',
+    ProximaNovaMedium: 'ProximaNova-Medium',
+    ProximaNovaBold: 'ProximaNova-Bold',
 }

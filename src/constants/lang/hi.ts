@@ -14,5 +14,8 @@ export default{
     CONFIRM_PASSWORD:'पासवर्ड की पुष्टि करें',
     ALREADY_HAVE_ACC:'पहले से ही एक खाता है',
     Verification_Code:'सत्यापन कोड',
-    A_code_has_been_sent_to:'को एक कोड भेजा गया है'
+    A_code_has_been_sent_to:'को एक कोड भेजा गया है',
+    Did_not_recieved_the_code:"क्या कोड प्राप्त नहीं हुआ? ",
+    RESEND_CODE:'पुन: कोड भेजे',
+    VERIFY:'सत्यापित करें'
 }

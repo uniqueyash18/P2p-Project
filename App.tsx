@@ -4,26 +4,17 @@
  *
  * @format
  */
-
-import type { PropsWithChildren } from 'react';
 import React, { useEffect } from 'react';
 import {
   StyleSheet,
-  Text,
   useColorScheme,
   View
 } from 'react-native';
 
-import {
-  Colors
-} from 'react-native/Libraries/NewAppScreen';
 import Routes from './src/navigation/Routes';
-import { GoogleSignin } from '@react-native-google-signin/google-signin';
-import i18next from 'i18next';
+import ForegroundHandler from './src/utils/ForegroundHandler';
+import { notificationListener, requestUserPermission } from './src/utils/notificationService';
 
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
 
 
 
@@ -35,8 +26,16 @@ function App(): JSX.Element {
   // webClientId: '',
   // });
   // },[])
+  useEffect(()=>{
+   (async ()=>{
+     await requestUserPermission()
+     notificationListener()
+    })()
+    },[])
+  
   return (
     <View style={{flex:1}}>
+      <ForegroundHandler />
       <Routes/>
     </View>
   );

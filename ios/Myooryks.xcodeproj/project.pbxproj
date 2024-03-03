@@ -38,6 +38,9 @@
 		E05F5CA30EFC4AE2B03C5D09 /* Futura-Normal.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 678F94FD340D44BA81D19A0C /* Futura-Normal.ttf */; };
 		EA5380E40BE44BCFAD3A43C2 /* SFProDisplay-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CCFA035133DE465D9D390721 /* SFProDisplay-Regular.ttf */; };
 		EF117937ABB44C52B8B1C6C5 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 57B9EDA260BF443A9BC135DF /* Poppins-Bold.ttf */; };
+		D51B544B88FF4710A31841E3 /* ProximaNova-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C3DF059B0898498085B7ABDD /* ProximaNova-Bold.ttf */; };
+		AD06041E66E744D6B91A9E44 /* ProximaNova-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05CBF62F51B4D2B99EE3D27 /* ProximaNova-Medium.ttf */; };
+		0F588215DD5B4091B2DE3B8B /* ProximaNova-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0F8AFB8DED8745A6A5C29B65 /* ProximaNova-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +95,9 @@
 		E2E7244380F13CD49F2D131A /* Pods_Myooryks_MyooryksTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Myooryks_MyooryksTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		EFC9A9D437984F1F8B382ABD /* Poppins-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Regular.ttf"; path = "../src/assets/fonts/Poppins-Regular.ttf"; sourceTree = "<group>"; };
+		C3DF059B0898498085B7ABDD /* ProximaNova-Bold.ttf */ = {isa = PBXFileReference; name = "ProximaNova-Bold.ttf"; path = "../src/assets/fonts/ProximaNova-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		A05CBF62F51B4D2B99EE3D27 /* ProximaNova-Medium.ttf */ = {isa = PBXFileReference; name = "ProximaNova-Medium.ttf"; path = "../src/assets/fonts/ProximaNova-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		0F8AFB8DED8745A6A5C29B65 /* ProximaNova-Regular.ttf */ = {isa = PBXFileReference; name = "ProximaNova-Regular.ttf"; path = "../src/assets/fonts/ProximaNova-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +187,9 @@
 				4364D053BF5A4388A59CC8B9 /* Urbanist-Medium.ttf */,
 				270C0B7A28C54335A3FD18B9 /* Urbanist-Regular.ttf */,
 				DD883B8637F640299852063B /* Urbanist-SemiBold.ttf */,
+				C3DF059B0898498085B7ABDD /* ProximaNova-Bold.ttf */,
+				A05CBF62F51B4D2B99EE3D27 /* ProximaNova-Medium.ttf */,
+				0F8AFB8DED8745A6A5C29B65 /* ProximaNova-Regular.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -347,6 +356,9 @@
 				4A54B2E23B8D495FA762FCF4 /* Urbanist-Medium.ttf in Resources */,
 				92B49A899670467D9F572117 /* Urbanist-Regular.ttf in Resources */,
 				5682CABD250E4D6FBEF560D0 /* Urbanist-SemiBold.ttf in Resources */,
+				D51B544B88FF4710A31841E3 /* ProximaNova-Bold.ttf in Resources */,
+				AD06041E66E744D6B91A9E44 /* ProximaNova-Medium.ttf in Resources */,
+				0F588215DD5B4091B2DE3B8B /* ProximaNova-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

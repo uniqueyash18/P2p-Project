@@ -1,5 +1,6 @@
 import { GoogleSignin, statusCodes } from "@react-native-google-signin/google-signin";
 import i18next from "i18next";
+import { MMKV } from "react-native-mmkv";
 
 export const signIn = async () => {
     try {
@@ -23,3 +24,11 @@ export const signIn = async () => {
   export const changeLang=(lng:any)=>{
     i18next.changeLanguage(lng)
     }
+
+   const storage = new MMKV()
+   export const setStorage=(key:string,value:any)=>{
+    storage.set(key,value)
+   }
+   export const getStorage=(key:string)=>{
+    storage.getString(key)
+   }

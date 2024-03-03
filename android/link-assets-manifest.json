@@ -58,6 +58,18 @@
       "sha1": "8a4ace9392d06bcb7f8ea2f5169b07e4c383a90d"
     },
     {
+      "path": "src/assets/fonts/ProximaNova-Bold.ttf",
+      "sha1": "6d3ebef8117e71fec041a5658388849d2bdcbbc4"
+    },
+    {
+      "path": "src/assets/fonts/ProximaNova-Medium.ttf",
+      "sha1": "daba71b45bc178a5d241f5f117a8574950f76262"
+    },
+    {
+      "path": "src/assets/fonts/ProximaNova-Regular.ttf",
+      "sha1": "ab94cee02b55f7bd32a9d49d147659326540526f"
+    },
+    {
       "path": "src/assets/fonts/SFProDisplay-Regular.ttf",
       "sha1": "00e029c09a98fd014a7a1013e7efe357b40da352"
     },
