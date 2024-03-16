@@ -6,11 +6,11 @@ import TabRoutes from './TabRoutes';
 
 export default function Routes() {
   const Stack = createNativeStackNavigator();
-  const appSessionInfo = 'guest';
+  const appSessionInfo = 'main';
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown:false}}>
-        {appSessionInfo != 'guest'?
+        {appSessionInfo == 'guest'?
          <Stack.Screen
          component={TabRoutes}
          name="TabRoutes"

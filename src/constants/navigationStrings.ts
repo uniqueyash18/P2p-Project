@@ -6,5 +6,6 @@ export default{
     AccountStack:'AccountStack',
     Login:'Login',
     Signup:'Signup',
-    OtpVerify:'OtpVerify'
+    OtpVerify:'OtpVerify',
+    Homescreen:'HomeScreen'
 }

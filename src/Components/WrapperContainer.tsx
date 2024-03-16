@@ -1,5 +1,5 @@
-import React, { FC, ReactNode } from 'react';
-import { StatusBar, View,SafeAreaView, Text } from 'react-native';
+import React, { FC, ReactNode, useRef } from 'react';
+import { StatusBar, View,SafeAreaView, Text, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import Loader from './Loader';
 import colors from '../styles/colors';
 import { moderateScale } from 'react-native-size-matters';
@@ -21,7 +21,7 @@ const WrapperContainer:FC<Proptypes> = ({
   withModal = false,
   isSafeArea = true
 }:Proptypes) => {
-
+  const keyboardDismiss = useRef(null);
   if(isSafeArea){
     return(
       <SafeAreaView
@@ -33,7 +33,9 @@ const WrapperContainer:FC<Proptypes> = ({
         backgroundColor={ statusBarColor}
         barStyle={barStyle as any}
       />
-      <View style={{ backgroundColor: bgColor,flex: 1,marginHorizontal:moderateScale(12)}}>{children}</View>
+       <TouchableWithoutFeedback onPress={()=> Keyboard.dismiss()}>
+      <View  ref={keyboardDismiss}  style={{ backgroundColor: bgColor,flex: 1,marginHorizontal:moderateScale(12)}}>{children}</View>
+      </TouchableWithoutFeedback>
       <Loader isLoading={isLoading} withModal={withModal} />
     </SafeAreaView>
     )

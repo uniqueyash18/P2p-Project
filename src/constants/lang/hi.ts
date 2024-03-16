@@ -17,5 +17,7 @@ export default{
     A_code_has_been_sent_to:'को एक कोड भेजा गया है',
     Did_not_recieved_the_code:"क्या कोड प्राप्त नहीं हुआ? ",
     RESEND_CODE:'पुन: कोड भेजे',
-    VERIFY:'सत्यापित करें'
+    VERIFY:'सत्यापित करें',
+    WHAT_DEALS_YOU_WANT:'आपको कौन से सौदे पसंद हैं?',
+    ALL_CATEGORIES:'सब वर्ग'
 }

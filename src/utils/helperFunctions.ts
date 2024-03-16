@@ -1,7 +1,7 @@
 import { GoogleSignin, statusCodes } from "@react-native-google-signin/google-signin";
 import i18next from "i18next";
 import { MMKV } from "react-native-mmkv";
-
+const storage = new MMKV()
 export const signIn = async () => {
     try {
       await GoogleSignin.hasPlayServices();
@@ -25,7 +25,7 @@ export const signIn = async () => {
     i18next.changeLanguage(lng)
     }
 
-   const storage = new MMKV()
+
    export const setStorage=(key:string,value:any)=>{
     storage.set(key,value)
    }

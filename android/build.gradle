@@ -21,3 +21,6 @@ buildscript {
 
     }
 }
+project.ext {
+    excludeAppGlideModule = true
+}

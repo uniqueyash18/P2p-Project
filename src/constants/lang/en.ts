@@ -17,5 +17,7 @@ export default{
     A_code_has_been_sent_to:'A code has been sent to',
     Did_not_recieved_the_code:'Didn’t recieved the code? ',
     RESEND_CODE:'Resend Code',
-    VERIFY:'Verify'
+    VERIFY:'Verify',
+    WHAT_DEALS_YOU_WANT:'What Deals You Like?',
+    ALL_CATEGORIES:'All Categories'
 }
