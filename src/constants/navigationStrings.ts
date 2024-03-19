@@ -7,5 +7,7 @@ export default{
     Login:'Login',
     Signup:'Signup',
     OtpVerify:'OtpVerify',
-    Homescreen:'HomeScreen'
+    Homescreen:'HomeScreen',
+    PostStack:'PostStack',
+    AddPost:'AddPost'
 }

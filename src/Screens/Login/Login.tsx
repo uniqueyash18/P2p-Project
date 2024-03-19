@@ -11,11 +11,12 @@ import imagePath from '../../constants/imagePath';
 import navigationStrings from '../../constants/navigationStrings';
 import colors from '../../styles/colors';
 import fontFamily from '../../styles/fontFamily';
-import { textScale } from '../../styles/responsiveSize';
+import { textScale, width } from '../../styles/responsiveSize';
 import { styles } from './styles';
-import { changeLang } from '../../utils/helperFunctions';
+import { changeLang, showError, showSuccess } from '../../utils/helperFunctions';
+import { login } from '../../redux/actions/auth';
 interface ComponentState{
-  phoneNumber:number,
+  phoneNumber:Number,
   passWord:any,
   hidePass:boolean
 }
@@ -40,10 +41,14 @@ const Login:FC<PropTypes>=({data}:PropTypes) => {
     }),
   ];
 
+  const  onPressLogin=async()=>{
+    await login({phonenumber:phoneNumber,password:passWord})
+  }
+
   return (
     <WrapperContainer isSafeArea={true}>
       <View style={styles.topview}>
-        <Image source={imagePath.logo} />
+      <Image style={{resizeMode:'contain',width:width/1.5}} source={imagePath.newLogo} />
       </View>
       <KeyboardAwareScrollView style={styles.bottomview}>
         <View>
@@ -75,6 +80,7 @@ const Login:FC<PropTypes>=({data}:PropTypes) => {
             </TouchableOpacity>
           </View>
           <GradientButton
+          onPress={onPressLogin}
             btnText={t('LOGIN')}
             textStyle={{
               color: colors.white,
@@ -89,7 +95,7 @@ const Login:FC<PropTypes>=({data}:PropTypes) => {
             borderRadius={8}
           />
         </View>
-        <View style={styles.orLoginView}>
+        {/* <View style={styles.orLoginView}>
           <View style={styles.horizontalLine}/>
           <Text style={{marginHorizontal:moderateScale(12),color:colors.textGreyB}}> {t('Or_Login_with')}</Text>
           <View style={styles.horizontalLine}/>
@@ -104,7 +110,7 @@ const Login:FC<PropTypes>=({data}:PropTypes) => {
           <TouchableOpacity>
             <Image source={imagePath.facebooklogo}/>
           </TouchableOpacity>
-        </View>
+        </View> */}
       </KeyboardAwareScrollView>
       <View style={styles.dontHaveAcc}>
           <Text style={{fontSize:textScale(14)}}>{t('DONT_HAVE_ACCOUNT')}

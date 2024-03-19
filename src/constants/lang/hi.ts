@@ -1,6 +1,6 @@
 export default{
     Log_In:'लॉग इन करें',
-    Phone_number:'फ़ोन नंबर',
+    Phone_number:'व्हाट्सएप नंबर',
     Password:'पासवर्ड',
     Forgot_Passsword:'पासवर्ड भूल गए?',
     LOGIN:'लॉग इन',
@@ -19,5 +19,9 @@ export default{
     RESEND_CODE:'पुन: कोड भेजे',
     VERIFY:'सत्यापित करें',
     WHAT_DEALS_YOU_WANT:'आपको कौन से सौदे पसंद हैं?',
-    ALL_CATEGORIES:'सब वर्ग'
+    ALL_CATEGORIES:'सब वर्ग',
+    Do_YOU_HAVE_ANY_ACCOUNT:'क्या आपके पास इनमें से कोई खाता है?',
+    AMAZON:'Amazon',
+    FLIPKART:'Flipkart',
+    MYNTRA:'Myntra'
 }

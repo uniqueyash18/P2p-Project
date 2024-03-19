@@ -11,7 +11,6 @@ import colors from '../../styles/colors';
 import fontFamily from '../../styles/fontFamily';
 import { textScale } from '../../styles/responsiveSize';
 import { styles } from './styles';
-import { requestUserPermission } from '../../utils/notificationService';
 interface PropTypes {
   route: any;
 }

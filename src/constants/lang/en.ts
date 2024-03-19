@@ -1,6 +1,6 @@
 export default{
     Log_In:"Log In",
-    Phone_number:"Phone Number",
+    Phone_number:"Whatsapp Number",
     Password:"Password",
     Forgot_Passsword:"Forgot password?",
     LOGIN:"Login",
@@ -19,5 +19,10 @@ export default{
     RESEND_CODE:'Resend Code',
     VERIFY:'Verify',
     WHAT_DEALS_YOU_WANT:'What Deals You Like?',
-    ALL_CATEGORIES:'All Categories'
+    ALL_CATEGORIES:'All Categories',
+    Do_YOU_HAVE_ANY_ACCOUNT:'Do you have any of these account?',
+    AMAZON:'Amazon',
+    FLIPKART:'Flipkart',
+    MYNTRA:'Myntra',
+    ADD_POST:"Add Post"
 }

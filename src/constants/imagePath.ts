@@ -1,5 +1,6 @@
 export default{
     logo:require('../assets/images/logo.png'),
+    newLogo:require('../assets/images/myLogo.png'),
     hideEye:require('../assets/images/hide.png'),
     applelogo:require('../assets/images/apple.png'),
     goodleLogo:require('../assets/images/google.png'),
@@ -16,4 +17,6 @@ export default{
     myntaIcon:require('../assets/images/myntaIcon.png'),
     ustraaLogo:require('../assets/images/ustraaLogo.png'),
     AjioLogo:require('../assets/images/AjioLogo.png'),
+    ic_checked:require('../assets/images/ic_checked.png'),
+    ic_unchecked:require('../assets/images/ic_unchecked.png'),
 }

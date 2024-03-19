@@ -1,5 +1,6 @@
 import messaging, { FirebaseMessagingTypes } from '@react-native-firebase/messaging';
 import {PermissionsAndroid, Platform} from 'react-native';
+import { getItem, setItem } from '../services/apiService';
 
 export async function requestUserPermission(callback: (error: boolean) => void = () => {}): Promise<void> {
     try {
@@ -19,10 +20,8 @@ export async function requestUserPermission(callback: (error: boolean) => void =
         );
   
         if (permission !== null && permission === PermissionsAndroid.RESULTS.GRANTED) {
-          await getFcmToken();
-          callback(false);
-        } else {
-          callback(true);
+          return await getFcmToken();
+
         }
       } else {
         const authStatus = await messaging().requestPermission();
@@ -31,10 +30,7 @@ export async function requestUserPermission(callback: (error: boolean) => void =
           authStatus === messaging.AuthorizationStatus.PROVISIONAL;
   
         if (enabled) {
-          await getFcmToken();
-          callback(false);
-        } else {
-          callback(true);
+          return await getFcmToken();
         }
       }
     } catch (error) {
@@ -43,9 +39,17 @@ export async function requestUserPermission(callback: (error: boolean) => void =
     }
   }
 
-const getFcmToken = async (): Promise<void> => {
-  const newFcmToken = await messaging().getToken();
-  console.log(newFcmToken, 'the new generated token');
+const getFcmToken = async () => {
+  const fcm_token = await getItem('fcm_token')
+  if(!!fcm_token){
+    console.log(fcm_token,'old fcm_token')
+    return fcm_token
+  }else{
+    const newFcmToken = await messaging().getToken();
+     setItem('fcm_token',newFcmToken)
+     console.log(fcm_token,'new fcm_token')
+    return fcm_token
+  }
 };
 
 export const notificationListener = async (): Promise<void> => {

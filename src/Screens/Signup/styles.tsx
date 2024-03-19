@@ -8,15 +8,14 @@ export const styles = StyleSheet.create({
   topview: {
     alignItems: 'center',
     justifyContent: 'center',
-    flex: 0.2,
+    marginTop: moderateVerticalScale(30),
   },
   logintxt: {
     fontSize: textScale(24),
     fontFamily: fontFamily.medium,
+    marginTop: moderateVerticalScale(30),
   },
   bottomview: {
-    marginTop: moderateVerticalScale(30),
-    flex:0.8
   },
   inputarea: {
     marginTop: moderateVerticalScale(24),

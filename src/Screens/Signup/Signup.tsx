@@ -8,22 +8,29 @@ import {styles} from './styles';
 import imagePath from '../../constants/imagePath';
 import {useTranslation} from 'react-i18next';
 import {moderateScale, moderateVerticalScale} from 'react-native-size-matters';
-import {textScale} from '../../styles/responsiveSize';
+import {textScale, width} from '../../styles/responsiveSize';
 import colors from '../../styles/colors';
 import fontFamily from '../../styles/fontFamily';
 import navigationStrings from '../../constants/navigationStrings';
 import {useNavigation} from '@react-navigation/native';
+import CheckBoxWIthTitle from '../../Components/CheckBoxWIthTitle';
+import {ScrollView} from 'react-native-gesture-handler';
+import {requestUserPermission} from '../../utils/notificationService';
+import {signup} from '../../redux/actions/auth';
 interface PropTypes {
   data?: any;
 }
 interface ComponentStates {
-  phoneNumber: number;
-  email: string;
-  name: string;
+  phoneNumber: Number;
+  email: String;
+  name: String;
   password: any;
   confirmPassword: any;
-  hidePass: boolean;
-  hideConfirmPass: boolean;
+  hidePass: Boolean | undefined;
+  hideConfirmPass: Boolean | undefined;
+  isAmazonAccount: Boolean;
+  isFlipkartAccount: Boolean;
+  isMyntraAccount: Boolean;
 }
 
 const Signup: FC<PropTypes> = ({data}: PropTypes) => {
@@ -37,6 +44,9 @@ const Signup: FC<PropTypes> = ({data}: PropTypes) => {
     confirmPassword: '',
     hidePass: true,
     hideConfirmPass: true,
+    isAmazonAccount: false,
+    isFlipkartAccount: false,
+    isMyntraAccount: false,
   });
   const onPressRightConfirmPass = () => {
     updateState({
@@ -57,15 +67,35 @@ const Signup: FC<PropTypes> = ({data}: PropTypes) => {
     confirmPassword,
     hidePass,
     hideConfirmPass,
+    isAmazonAccount,
+    isFlipkartAccount,
+    isMyntraAccount,
   } = state;
   const updateState = (data: Partial<ComponentStates>) =>
     setState(state => ({...state, ...data}));
+
+  const onSignUp = async () => {
+    const fcm_token = await requestUserPermission();
+    await signup({
+      phonenumber: phoneNumber,
+      email: email,
+      name: name,
+      password: password,
+      isAdmin: false,
+      fcm_token: fcm_token,
+    });
+  };
   return (
     <WrapperContainer isSafeArea={true}>
-      <View style={styles.topview}>
-        <Image source={imagePath.logo} />
-      </View>
-      <KeyboardAwareScrollView style={styles.bottomview}>
+      <ScrollView
+        style={styles.bottomview}
+        showsVerticalScrollIndicator={false}>
+        <View style={styles.topview}>
+          <Image
+            style={{resizeMode: 'contain', width: width / 1.5}}
+            source={imagePath.newLogo}
+          />
+        </View>
         <View>
           <Text style={styles.logintxt}>{t('SIGNUP')}</Text>
           <View style={styles.inputarea}>
@@ -79,6 +109,7 @@ const Signup: FC<PropTypes> = ({data}: PropTypes) => {
             />
             <CustomTextInput
               value={phoneNumber}
+              keyboardType="numeric"
               placeholder={t('Phone_number')}
               containerStyles={{marginBottom: moderateScale(18)}}
               onChangeText={val => {
@@ -104,7 +135,7 @@ const Signup: FC<PropTypes> = ({data}: PropTypes) => {
               rightImg={imagePath.hideEye}
               rightImageStyle={{height: moderateVerticalScale(20)}}
               onPressRight={onPressRightPass}
-              secureTextEntry={hidePass}
+              secureTextEntry={hidePass as undefined}
             />
             <CustomTextInput
               value={confirmPassword}
@@ -116,14 +147,25 @@ const Signup: FC<PropTypes> = ({data}: PropTypes) => {
               rightImg={imagePath.hideEye}
               rightImageStyle={{height: moderateVerticalScale(20)}}
               onPressRight={onPressRightConfirmPass}
-              secureTextEntry={hideConfirmPass}
+              secureTextEntry={hideConfirmPass as undefined}
             />
           </View>
+          {/* <View>
+            <Text>
+              {t("Do_YOU_HAVE_ANY_ACCOUNT")}
+            </Text>
+            <View style={{flexDirection:'row', justifyContent:'space-between',marginTop:moderateScale(6)}}>
+              <CheckBoxWIthTitle oncheck={()=>updateState({isAmazonAccount:!isAmazonAccount})} title={'Amazon'} isChecked={isAmazonAccount}/>
+              <CheckBoxWIthTitle oncheck={()=>updateState({isFlipkartAccount:!isFlipkartAccount})} title={'Flipkart'} isChecked={isFlipkartAccount}/>
+              <CheckBoxWIthTitle oncheck={()=>updateState({isMyntraAccount:!isMyntraAccount})} title={'Myntra'} isChecked={isMyntraAccount}/>
+            </View>
+          </View> */}
         </View>
-      </KeyboardAwareScrollView>
+      </ScrollView>
       <GradientButton
         onPress={() => {
-          navigation.navigate(navigationStrings.OtpVerify as never);
+          // navigation.navigate(navigationStrings.OtpVerify as never);
+          onSignUp();
         }}
         btnText={t('SIGNUP')}
         textStyle={{
@@ -134,7 +176,7 @@ const Signup: FC<PropTypes> = ({data}: PropTypes) => {
         colorsArray={[colors.black, colors.black]}
         containerStyle={{
           height: moderateVerticalScale(40),
-          marginTop: moderateVerticalScale(32),
+          marginTop: moderateVerticalScale(10),
         }}
         borderRadius={8}
       />

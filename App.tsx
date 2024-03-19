@@ -14,6 +14,10 @@ import {
 import Routes from './src/navigation/Routes';
 import ForegroundHandler from './src/utils/ForegroundHandler';
 import { notificationListener, requestUserPermission } from './src/utils/notificationService';
+import { getItem } from './src/services/apiService';
+import { setUserdata } from './src/redux/reducers/auth';
+import FlashMessage from 'react-native-flash-message';
+import { useDispatch } from 'react-redux';
 
 
 
@@ -21,6 +25,7 @@ import { notificationListener, requestUserPermission } from './src/utils/notific
 
 function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
+  const dispatch =useDispatch()
   // useEffect(()=>{
   // GoogleSignin.configure({
   // webClientId: '',
@@ -28,7 +33,12 @@ function App(): JSX.Element {
   // },[])
   useEffect(()=>{
    (async ()=>{
-     await requestUserPermission()
+    //  await requestUserPermission()
+    const userData= getItem("userData")
+    if(!!userData){
+      dispatch(setUserdata(userData))
+    }
+
      notificationListener()
     })()
     },[])
@@ -37,6 +47,7 @@ function App(): JSX.Element {
     <View style={{flex:1}}>
       <ForegroundHandler />
       <Routes/>
+      <FlashMessage position="top" />
     </View>
   );
 }
