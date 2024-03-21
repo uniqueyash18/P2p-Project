@@ -14,13 +14,12 @@ type LoignData = {
 type SignupData = {
   name: String;
   email: String;
-  phonenumber: Number;
+  phonenumber: String;
   password: String;
   isAdmin: Boolean;
   fcm_token: any;
 };
 export const login = async (data: LoignData) => {
-  const authToken = await requestUserPermission();
   const res = await post(LOGIN, data)
     .then(res => {
       if (!!res?.data) {

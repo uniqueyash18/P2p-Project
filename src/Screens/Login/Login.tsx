@@ -14,7 +14,7 @@ import colors from '../../styles/colors';
 import fontFamily from '../../styles/fontFamily';
 import {textScale, width} from '../../styles/responsiveSize';
 import {styles} from './styles';
-import {changeLang, showError, showSuccess} from '../../utils/helperFunctions';
+import {validateFields} from '../../utils/helperFunctions';
 import {login} from '../../redux/actions/auth';
 interface ComponentState {
   phoneNumber: Number;
@@ -43,6 +43,12 @@ const Login: FC<PropTypes> = ({data}: PropTypes) => {
   ];
 
   const onPressLogin = async () => {
+    if(!validateFields({
+      phonenumber: String(phoneNumber),
+      password: passWord
+    })){
+      return
+    }
     await login({phonenumber: phoneNumber, password: passWord});
   };
 
@@ -65,6 +71,7 @@ const Login: FC<PropTypes> = ({data}: PropTypes) => {
               onChangeText={val => {
                 updateState({phoneNumber: val});
               }}
+              maxLength={10}
             />
             <CustomTextInput
               value={passWord}

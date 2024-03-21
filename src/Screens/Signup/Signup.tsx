@@ -18,12 +18,13 @@ import {ScrollView} from 'react-native-gesture-handler';
 import {requestUserPermission} from '../../utils/notificationService';
 import {signup} from '../../redux/actions/auth';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { validateFields } from '../../utils/helperFunctions';
 interface PropTypes {
   data?: any;
 }
 type LoginScreenNavigationProp = StackNavigationProp<any>;
 interface ComponentStates {
-  phoneNumber: Number;
+  phoneNumber: String;
   email: String;
   name: String;
   password: any;
@@ -38,7 +39,7 @@ const Signup: FC<PropTypes> = ({data}: PropTypes) => {
   const {t, i18n} = useTranslation();
   const navigation = useNavigation<LoginScreenNavigationProp>();
   const [state, setState] = useState<ComponentStates>({
-    phoneNumber: 0,
+    phoneNumber: '',
     email: '',
     name: '',
     password: '',
@@ -76,6 +77,15 @@ const Signup: FC<PropTypes> = ({data}: PropTypes) => {
     setState(state => ({...state, ...data}));
 
   const onSignUp = async () => {
+    if(!validateFields({
+      phonenumber: String(phoneNumber),
+      email: email,
+      name: name,
+      password: password,
+      confirmPassword:confirmPassword
+    })){
+      return
+    }
     const fcm_token = await requestUserPermission();
       await signup({
       phonenumber: phoneNumber,

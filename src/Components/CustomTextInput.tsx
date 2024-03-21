@@ -19,6 +19,7 @@ interface Proptypes{
   leftImageStyle?: object;
   secureTextEntry?: boolean;
   onPressRight?: () => void;
+  maxLength?:number
 }
 export const CustomTextInput: FC<Proptypes> = ({
   value,
@@ -35,7 +36,9 @@ export const CustomTextInput: FC<Proptypes> = ({
   rightImageStyle={},
   leftImageStyle={},
   secureTextEntry=false,
-  onPressRight=()=>{}
+  onPressRight=()=>{},
+  maxLength,
+  ...props
 }:Proptypes) => {
   return (
     <View style={{...styles.container, ...containerStyles}}>
@@ -51,6 +54,8 @@ export const CustomTextInput: FC<Proptypes> = ({
         placeholderTextColor={placeHolderColor}
         onChangeText={onChangeText}
         secureTextEntry={secureTextEntry}
+        maxLength={maxLength}
+        {...props}
       />
       {!!isRight && 
       <TouchableOpacity onPress={onPressRight}>
