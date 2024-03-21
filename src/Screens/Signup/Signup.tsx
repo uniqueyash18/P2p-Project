@@ -17,9 +17,11 @@ import CheckBoxWIthTitle from '../../Components/CheckBoxWIthTitle';
 import {ScrollView} from 'react-native-gesture-handler';
 import {requestUserPermission} from '../../utils/notificationService';
 import {signup} from '../../redux/actions/auth';
+import { StackNavigationProp } from '@react-navigation/stack';
 interface PropTypes {
   data?: any;
 }
+type LoginScreenNavigationProp = StackNavigationProp<any>;
 interface ComponentStates {
   phoneNumber: Number;
   email: String;
@@ -32,10 +34,9 @@ interface ComponentStates {
   isFlipkartAccount: Boolean;
   isMyntraAccount: Boolean;
 }
-
 const Signup: FC<PropTypes> = ({data}: PropTypes) => {
   const {t, i18n} = useTranslation();
-  const navigation = useNavigation();
+  const navigation = useNavigation<LoginScreenNavigationProp>();
   const [state, setState] = useState<ComponentStates>({
     phoneNumber: 0,
     email: '',
@@ -76,14 +77,17 @@ const Signup: FC<PropTypes> = ({data}: PropTypes) => {
 
   const onSignUp = async () => {
     const fcm_token = await requestUserPermission();
-    await signup({
+      await signup({
       phonenumber: phoneNumber,
       email: email,
       name: name,
       password: password,
       isAdmin: false,
       fcm_token: fcm_token,
-    });
+    }).then((res)=>{
+      navigation.navigate(navigationStrings.OtpVerify,res)
+    }).catch(()=>{})
+
   };
   return (
     <WrapperContainer isSafeArea={true}>
@@ -164,7 +168,13 @@ const Signup: FC<PropTypes> = ({data}: PropTypes) => {
       </ScrollView>
       <GradientButton
         onPress={() => {
-          // navigation.navigate(navigationStrings.OtpVerify as never);
+          // navigation.navigate(navigationStrings.OtpVerify,{
+          //   phonenumber: phoneNumber,
+          //   email: email,
+          //   name: name,
+          //   password: password,
+          //   isAdmin: false,
+          // });
           onSignUp();
         }}
         btnText={t('SIGNUP')}
@@ -185,7 +195,7 @@ const Signup: FC<PropTypes> = ({data}: PropTypes) => {
           {t('ALREADY_HAVE_ACC')}
           <Text
             onPress={() => {
-              navigation.navigate(navigationStrings.Login as never);
+              navigation.navigate(navigationStrings.Login);
             }}
             style={{color: colors.themeColor}}>
             {' '}

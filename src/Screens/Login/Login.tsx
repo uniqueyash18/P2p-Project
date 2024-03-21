@@ -1,54 +1,58 @@
-import { useNavigation } from '@react-navigation/native';
-import React, { FC, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { Button, Image, Text, TouchableOpacity, View } from 'react-native';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { moderateScale, moderateVerticalScale } from 'react-native-size-matters';
-import { CustomTextInput } from '../../Components/CustomTextInput';
+import {useNavigation} from '@react-navigation/native';
+import {StackNavigationProp} from '@react-navigation/stack';
+import React, {FC, useState} from 'react';
+import {useTranslation} from 'react-i18next';
+import {Button, Image, Text, TouchableOpacity, View} from 'react-native';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import {moderateScale, moderateVerticalScale} from 'react-native-size-matters';
+import {CustomTextInput} from '../../Components/CustomTextInput';
 import GradientButton from '../../Components/GradientButton';
 import WrapperContainer from '../../Components/WrapperContainer';
 import imagePath from '../../constants/imagePath';
 import navigationStrings from '../../constants/navigationStrings';
 import colors from '../../styles/colors';
 import fontFamily from '../../styles/fontFamily';
-import { textScale, width } from '../../styles/responsiveSize';
-import { styles } from './styles';
-import { changeLang, showError, showSuccess } from '../../utils/helperFunctions';
-import { login } from '../../redux/actions/auth';
-interface ComponentState{
-  phoneNumber:Number,
-  passWord:any,
-  hidePass:boolean
+import {textScale, width} from '../../styles/responsiveSize';
+import {styles} from './styles';
+import {changeLang, showError, showSuccess} from '../../utils/helperFunctions';
+import {login} from '../../redux/actions/auth';
+interface ComponentState {
+  phoneNumber: Number;
+  passWord: any;
+  hidePass: boolean;
 }
-interface PropTypes{
-  data?:any
+interface PropTypes {
+  data?: any;
 }
-
-const Login:FC<PropTypes>=({data}:PropTypes) => {
-  const navigation=useNavigation()
+type LoginScreenNavigationProp = StackNavigationProp<any>;
+const Login: FC<PropTypes> = ({data}: PropTypes) => {
+  const navigation = useNavigation<LoginScreenNavigationProp>();
   const {t} = useTranslation();
   const [state, setState] = useState<ComponentState>({
     phoneNumber: 0,
-    passWord:'',
-    hidePass:false,
+    passWord: '',
+    hidePass: false,
   });
 
-  const {phoneNumber,passWord, hidePass} = state;
-  const updateState = (data :any) => setState(state => ({...state, ...data}));
+  const {phoneNumber, passWord, hidePass} = state;
+  const updateState = (data: any) => setState(state => ({...state, ...data}));
   const onPressRight = () => [
     updateState({
       hidePass: !hidePass,
     }),
   ];
 
-  const  onPressLogin=async()=>{
-    await login({phonenumber:phoneNumber,password:passWord})
-  }
+  const onPressLogin = async () => {
+    await login({phonenumber: phoneNumber, password: passWord});
+  };
 
   return (
     <WrapperContainer isSafeArea={true}>
       <View style={styles.topview}>
-      <Image style={{resizeMode:'contain',width:width/1.5}} source={imagePath.newLogo} />
+        <Image
+          style={{resizeMode: 'contain', width: width / 1.5}}
+          source={imagePath.newLogo}
+        />
       </View>
       <KeyboardAwareScrollView style={styles.bottomview}>
         <View>
@@ -76,11 +80,11 @@ const Login:FC<PropTypes>=({data}:PropTypes) => {
               secureTextEntry={hidePass}
             />
             <TouchableOpacity>
-            <Text style={styles.forgot}>{t('Forgot_Passsword')}</Text>
+              <Text style={styles.forgot}>{t('Forgot_Passsword')}</Text>
             </TouchableOpacity>
           </View>
           <GradientButton
-          onPress={onPressLogin}
+            onPress={onPressLogin}
             btnText={t('LOGIN')}
             textStyle={{
               color: colors.white,
@@ -113,10 +117,18 @@ const Login:FC<PropTypes>=({data}:PropTypes) => {
         </View> */}
       </KeyboardAwareScrollView>
       <View style={styles.dontHaveAcc}>
-          <Text style={{fontSize:textScale(14)}}>{t('DONT_HAVE_ACCOUNT')}
-          <Text onPress={()=>{navigation.navigate(navigationStrings.Signup as never)}} style={{color:colors.themeColor}}> {t('SIGNUP')}</Text>
+        <Text style={{fontSize: textScale(14)}}>
+          {t('DONT_HAVE_ACCOUNT')}
+          <Text
+            onPress={() => {
+              navigation.navigate(navigationStrings.Signup as never);
+            }}
+            style={{color: colors.themeColor}}>
+            {' '}
+            {t('SIGNUP')}
           </Text>
-        </View>
+        </Text>
+      </View>
     </WrapperContainer>
   );
 };

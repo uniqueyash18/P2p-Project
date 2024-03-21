@@ -15,7 +15,7 @@ export default function Routes() {
       <Stack.Navigator screenOptions={{headerShown:false}}>
         {!!userData?.authToken ?
        <>{
-          !userData?.isAdmin ?
+          !!userData?.isAdmin ?
           <Stack.Screen
           component={AdminTab}
           name='AdminTab'

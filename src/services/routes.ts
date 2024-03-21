@@ -1,3 +1,5 @@
-export type APIS = "/auth/login" | "/users/add" | "/products" |"/login" | '/signup'
+export type APIS = "/auth/login" | "/users/add" | "/products" |"/login" | '/signup' | '/sendOtp'| '/verifyOtp'
 export const LOGIN='/login'
 export const SIGNUP='/signup'
+export const SEND_OTP='/sendOtp'
+export const VERIFY_OTP='/verifyOtp'

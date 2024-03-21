@@ -14,7 +14,7 @@ import {
 import Routes from './src/navigation/Routes';
 import ForegroundHandler from './src/utils/ForegroundHandler';
 import { notificationListener, requestUserPermission } from './src/utils/notificationService';
-import { getItem } from './src/services/apiService';
+import { getItem, setItem } from './src/services/apiService';
 import { setUserdata } from './src/redux/reducers/auth';
 import FlashMessage from 'react-native-flash-message';
 import { useDispatch } from 'react-redux';
@@ -33,7 +33,8 @@ function App(): JSX.Element {
   // },[])
   useEffect(()=>{
    (async ()=>{
-    //  await requestUserPermission()
+    // setItem("userData",null)
+    // dispatch(setUserdata(null))
     const userData= getItem("userData")
     if(!!userData){
       dispatch(setUserdata(userData))
