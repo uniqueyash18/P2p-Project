@@ -19,4 +19,10 @@ export default{
     AjioLogo:require('../assets/images/AjioLogo.png'),
     ic_checked:require('../assets/images/ic_checked.png'),
     ic_unchecked:require('../assets/images/ic_unchecked.png'),
+    logout:require('../assets/images/logout.png'),
+    about:require('../assets/images/about.png'),
+    contactUs:require('../assets/images/contactUs.png'),
+    deal:require('../assets/images/deal.png'),
+    profileicon:require('../assets/images/profileicon.png'),
+
 }

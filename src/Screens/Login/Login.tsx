@@ -2,7 +2,7 @@ import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import React, {FC, useState} from 'react';
 import {useTranslation} from 'react-i18next';
-import {Button, Image, Text, TouchableOpacity, View} from 'react-native';
+import {Alert, Button, Image, Text, TouchableOpacity, View} from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {moderateScale, moderateVerticalScale} from 'react-native-size-matters';
 import {CustomTextInput} from '../../Components/CustomTextInput';
@@ -14,8 +14,9 @@ import colors from '../../styles/colors';
 import fontFamily from '../../styles/fontFamily';
 import {textScale, width} from '../../styles/responsiveSize';
 import {styles} from './styles';
-import {validateFields} from '../../utils/helperFunctions';
 import {login} from '../../redux/actions/auth';
+import validate from '../../utils/validation';
+import { showError } from '../../utils/helperFunctions';
 interface ComponentState {
   phoneNumber: Number;
   passWord: any;
@@ -31,7 +32,7 @@ const Login: FC<PropTypes> = ({data}: PropTypes) => {
   const [state, setState] = useState<ComponentState>({
     phoneNumber: 0,
     passWord: '',
-    hidePass: false,
+    hidePass: true,
   });
 
   const {phoneNumber, passWord, hidePass} = state;
@@ -43,13 +44,15 @@ const Login: FC<PropTypes> = ({data}: PropTypes) => {
   ];
 
   const onPressLogin = async () => {
-    if(!validateFields({
-      phonenumber: String(phoneNumber),
-      password: passWord
-    })){
-      return
-    }
-    await login({phonenumber: phoneNumber, password: passWord});
+const res =validate({
+  phoneNumber: String(phoneNumber),
+  password: passWord
+})
+if(res==true) {
+  await login({phonenumber: phoneNumber, password: passWord});
+}else{
+  showError(res)
+}   
   };
 
   return (

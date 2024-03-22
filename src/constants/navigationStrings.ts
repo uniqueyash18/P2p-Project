@@ -9,5 +9,10 @@ export default{
     OtpVerify:'OtpVerify',
     Homescreen:'HomeScreen',
     PostStack:'PostStack',
-    AddPost:'AddPost'
+    AddPost:'AddPost',
+    Account:'Account',
+    Profile:'Profile',
+    MyDeals:'MyDeals',
+    ContactUs:'ContactUs',
+    About:'About'
 }

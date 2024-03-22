@@ -1,6 +1,6 @@
 export default{
     Log_In:"Log In",
-    Phone_number:"Whatsapp Number",
+    Phone_number:"Whatsapp Number (without +91)",
     Password:"Password",
     Forgot_Passsword:"Forgot password?",
     LOGIN:"Login",
@@ -24,5 +24,8 @@ export default{
     AMAZON:'Amazon',
     FLIPKART:'Flipkart',
     MYNTRA:'Myntra',
-    ADD_POST:"Add Post"
+    ADD_POST:"Add Post",
+    SELECT_THE_TYPE_OF_DEAL:'Select the type of deal',
+    SELECT_THE_DEAL_PLATFORM:'Select the deal platform',
+    ACCOUNT:'Account'
 }

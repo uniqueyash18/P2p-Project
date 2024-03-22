@@ -61,3 +61,7 @@ export const sendOtp = async (userData:Object) => {
         }
       })
   };
+   export const onLogOut = () => {
+    setItem('userData', null);
+    dispatch(setUserdata(null));
+   }

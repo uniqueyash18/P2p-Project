@@ -1,6 +1,6 @@
 import axios, { AxiosError, CancelToken } from "axios";
 import { MMKV } from "react-native-mmkv";
-import { APIS } from "./routes";
+import { APIS, GHR_KA_URL } from "./routes";
 import { ExtendedApiErrorResponse } from "../models/ApiErrorResponse";
 import { showError } from "../utils/helperFunctions";
 
@@ -11,7 +11,7 @@ interface PostOptions {
 }
 
 const api = axios.create({
-  baseURL: "http://192.168.1.7:3000", // Replace with your API base URL
+  baseURL: `http://${GHR_KA_URL}:3000`, // Replace with your API base URL
   timeout: 10000, // Set a timeout for requests (in milliseconds)
 });
 

@@ -17,23 +17,24 @@ import CheckBoxWIthTitle from '../../Components/CheckBoxWIthTitle';
 import {ScrollView} from 'react-native-gesture-handler';
 import {requestUserPermission} from '../../utils/notificationService';
 import {signup} from '../../redux/actions/auth';
-import { StackNavigationProp } from '@react-navigation/stack';
-import { validateFields } from '../../utils/helperFunctions';
+import {StackNavigationProp} from '@react-navigation/stack';
+import validate from '../../utils/validation';
+import {showError} from '../../utils/helperFunctions';
 interface PropTypes {
   data?: any;
 }
 type LoginScreenNavigationProp = StackNavigationProp<any>;
 interface ComponentStates {
-  phoneNumber: String;
-  email: String;
-  name: String;
+  phoneNumber: string;
+  email: string;
+  name: string;
   password: any;
   confirmPassword: any;
-  hidePass: Boolean | undefined;
-  hideConfirmPass: Boolean | undefined;
-  isAmazonAccount: Boolean;
-  isFlipkartAccount: Boolean;
-  isMyntraAccount: Boolean;
+  hidePass: boolean | undefined;
+  hideConfirmPass: boolean | undefined;
+  isAmazonAccount: boolean;
+  isFlipkartAccount: boolean;
+  isMyntraAccount: boolean;
 }
 const Signup: FC<PropTypes> = ({data}: PropTypes) => {
   const {t, i18n} = useTranslation();
@@ -77,27 +78,30 @@ const Signup: FC<PropTypes> = ({data}: PropTypes) => {
     setState(state => ({...state, ...data}));
 
   const onSignUp = async () => {
-    if(!validateFields({
+    const validation = validate({
       phonenumber: String(phoneNumber),
       email: email,
       name: name,
       password: password,
-      confirmPassword:confirmPassword
-    })){
-      return
-    }
-    const fcm_token = await requestUserPermission();
+      confirmPassword: confirmPassword,
+    });
+    if (validation == true) {
+      const fcm_token = await requestUserPermission();
       await signup({
-      phonenumber: phoneNumber,
-      email: email,
-      name: name,
-      password: password,
-      isAdmin: false,
-      fcm_token: fcm_token,
-    }).then((res)=>{
-      navigation.navigate(navigationStrings.OtpVerify,res)
-    }).catch(()=>{})
-
+        phonenumber: phoneNumber,
+        email: email,
+        name: name,
+        password: password,
+        isAdmin: false,
+        fcm_token: fcm_token,
+      })
+        .then(res => {
+          navigation.navigate(navigationStrings.OtpVerify, res);
+        })
+        .catch(() => {});
+    } else {
+      showError(validation);
+    }
   };
   return (
     <WrapperContainer isSafeArea={true}>

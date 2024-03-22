@@ -13,7 +13,6 @@ import {textScale} from '../styles/responsiveSize';
 import {moderateVerticalScale} from 'react-native-size-matters';
 interface Proptypes {
   cetnerTitle?: String;
-  isLeftIcon?: Boolean;
   leftIcon?: String;
   OnPressLeft?: () => void;
   isRightIcon?: Boolean;
@@ -24,7 +23,6 @@ interface Proptypes {
 }
 const Header: FC<Proptypes> = ({
   cetnerTitle,
-  isLeftIcon,
   leftIcon,
   OnPressLeft,
   isRightIcon,
@@ -41,7 +39,7 @@ const Header: FC<Proptypes> = ({
         alignItems: 'center',
         paddingVertical: moderateVerticalScale(12),
       }}>
-      {!isLeft && (
+      {!!isLeft && (
         <View
           style={{flex: 0.1, alignItems: 'center', justifyContent: 'center'}}>
           {!!isCustomLeft ? (

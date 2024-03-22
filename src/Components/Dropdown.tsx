@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, FlatList, StyleSheet } from 'react-native';
-import { width } from '../styles/responsiveSize';
+import { textScale, width } from '../styles/responsiveSize';
+import fontFamily from '../styles/fontFamily';
+import { moderateVerticalScale } from 'react-native-size-matters';
 
 interface Props {
   options: any;
   onSelect: (value: any) => void;
   placeholder?: string;
   value: any;
+  title?:string
 }
 
-const Dropdown: React.FC<Props> = ({ options, onSelect, placeholder = 'Select', value }) => {
+const Dropdown: React.FC<Props> = ({ options, onSelect, placeholder = 'Select', value,title="" }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDropdown = () => {
@@ -20,18 +23,19 @@ const Dropdown: React.FC<Props> = ({ options, onSelect, placeholder = 'Select', 
     onSelect(value);
     setIsOpen(false);
   };
-
+console.log(value,'valuevalue')
   return (
     <View style={styles.container}>
+     {!!title && <Text style={styles.title}>{title}</Text>}
       <TouchableOpacity onPress={toggleDropdown} style={styles.dropdownToggle}>
-        <Text style={styles.placeholder}>{!!value ? value : placeholder}</Text>
+        <Text style={styles.placeholder}>{ !!value?.value ? value?.value : placeholder}</Text>
       </TouchableOpacity>
       {isOpen && (
         <View style={styles.dropdown}>
           <FlatList
             data={options}
             renderItem={({ item }) => (
-              <TouchableOpacity onPress={() => handleSelect(item.value)} style={styles.option}>
+              <TouchableOpacity onPress={() => handleSelect(item)} style={styles.option}>
                 <Text>{item.label}</Text>
               </TouchableOpacity>
             )}
@@ -82,6 +86,12 @@ const styles = StyleSheet.create({
   optionsList: {
     maxHeight: 150,
   },
+  title:{
+fontFamily:fontFamily.ProximaNovaMedium,
+fontSize:textScale(16),
+marginVertical:moderateVerticalScale(6),
+textTransform:'capitalize'
+  }
 });
 
 export default Dropdown;
